@@ -1,7 +1,7 @@
 
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Mimi Sipes / COMP 272-002
  *
  *   This java file contains the problem solutions for the methods lastBoulder,
  *   showDuplicates, and pair methods. You should utilize the Java Collection
@@ -90,12 +90,25 @@ public class ProblemSolutions {
      */
 
     public static ArrayList<String> showDuplicates(ArrayList<String> input) {
+        // Return an empty ArrayList if the input is empty
+        if (input == null || input.isEmpty()) {
+            return new ArrayList<>();
+        }
 
-        //
-        //  YOUR CODE GOES HERE
-        //
-        return new ArrayList<>();  // Make sure result is sorted in ascending order
+        // Use a HashSet to store unique strings in lowercase for case-insensitivity
+        HashSet<String> uniqueStrings = new HashSet<>();
 
+        // Add each string to the HashSet in lowercase
+        for (String str : input) {
+            uniqueStrings.add(str.toLowerCase());
+        }
+
+        // Convert the HashSet to a List and sort it
+        List<String> sortedList = new ArrayList<>(uniqueStrings);
+        Collections.sort(sortedList);
+
+        // Return the sorted list as an ArrayList
+        return new ArrayList<>(sortedList);
     }
 
 
