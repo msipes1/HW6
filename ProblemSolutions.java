@@ -88,27 +88,24 @@ public class ProblemSolutions {
      * @return       an ArrayList<String> containing only unique strings that appear
      *               more than once in the input list. They will be in ascending order.
      */
-
+    //DONE
     public static ArrayList<String> showDuplicates(ArrayList<String> input) {
-        // Return an empty ArrayList if the input is empty
-        if (input == null || input.isEmpty()) {
-            return new ArrayList<>();
-        }
+        Map<String, Integer> countMap = new HashMap<>();
 
-        // Use a HashSet to store unique strings in lowercase for case-insensitivity
-        HashSet<String> uniqueStrings = new HashSet<>();
-
-        // Add each string to the HashSet in lowercase
         for (String str : input) {
-            uniqueStrings.add(str.toLowerCase());
+            countMap.put(str, countMap.getOrDefault(str, 0) + 1);
         }
 
-        // Convert the HashSet to a List and sort it
-        List<String> sortedList = new ArrayList<>(uniqueStrings);
-        Collections.sort(sortedList);
+        ArrayList<String> duplicates = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
+            if (entry.getValue() > 1) {
+                duplicates.add(entry.getKey());
+            }
+        }
 
-        // Return the sorted list as an ArrayList
-        return new ArrayList<>(sortedList);
+        Collections.sort(duplicates);
+
+        return duplicates;
     }
 
 
