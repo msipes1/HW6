@@ -140,10 +140,22 @@ public class ProblemSolutions {
      */
 
     public static ArrayList<String> pair(int[] input, int k) {
+        HashSet<Integer> seen = new HashSet<>();
+        HashSet<String> pairs = new HashSet<>();
 
-        //
-        //  YOUR CODE GOES HERE
-        //
-        return new ArrayList<>();  // Make sure returned lists is sorted as indicated above
+        for (int num : input) {
+            int complement = k - num;
+            if (seen.contains(complement)) {
+                int a = Math.min(num, complement);
+                int b = Math.max(num, complement);
+                pairs.add("(" + a + ", " + b + ")");
+            }
+            seen.add(num);
+        }
+
+        ArrayList<String> result = new ArrayList<>(pairs);
+        Collections.sort(result);
+
+        return result;
     }
 }
