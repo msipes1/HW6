@@ -62,13 +62,25 @@ public class ProblemSolutions {
      * given operations in the question as long as 2 or more boulders;
      * returning the 0 if queue is empty else return pq.peek().
      */
-
+    
+    //DONE
   public static int lastBoulder(int[] boulders) {
+      PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
 
-      //
-      // ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME / SECTION # ABOVE
-      //
-      return -1;
+      for (int weight : boulders) {
+          pq.add(weight);
+      }
+
+      while (pq.size() > 1) {
+          int x = pq.poll();
+          int y = pq.poll();
+
+          if (x != y) {
+              pq.add(x - y);
+          }
+      }
+
+      return pq.isEmpty() ? 0 : pq.peek();
   }
 
 
