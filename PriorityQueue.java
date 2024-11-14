@@ -184,10 +184,13 @@ class PriorityQueue<E, P> {
      *
      * @return: boolean - true if element in queue, else false.
      */
-
+    //DONE
     public boolean contains(E e) {
-
-        // ADD YOUR CODE HERE
+        for (Node node : tree) {
+            if (node.value.equals(e)) {
+                return true;
+            }
+        }
         return false;
     }
 
