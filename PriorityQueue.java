@@ -150,9 +150,28 @@ class PriorityQueue<E, P> {
      */
 
     public Node add(E e, P priority) {
+        Node newNode = new Node(e, priority, size());
+        tree.add(newNode);
 
-        // YOUR CODE GOES HERE
-        return null;
+        int currentIndex = size() - 1;
+        while (currentIndex > 0) {
+            int parentIndex = (currentIndex - 1) / 2;
+            Node parent = tree.get(parentIndex);
+
+            if (comparator.compare(newNode.priority, parent.priority) >= 0) {
+                break;
+            }
+
+            tree.set(currentIndex, parent);
+            parent.idx = currentIndex;
+
+            currentIndex = parentIndex;
+        }
+
+        tree.set(currentIndex, newNode);
+        newNode.idx = currentIndex;
+
+        return newNode;
     }
 
 
